@@ -7,11 +7,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class XrayAlert extends JavaPlugin {
 
     private OreTracker oreTracker;
+    private VersionManager versionManager;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
 
+        versionManager = new VersionManager();
         oreTracker = new OreTracker(this);
 
         getServer().getPluginManager().registerEvents(new BlockBreakListener(this), this);
@@ -21,6 +23,7 @@ public class XrayAlert extends JavaPlugin {
         getCommand("xrayalert").setTabCompleter(commandExecutor);
 
         getLogger().info("XrayAlert v" + getDescription().getVersion() + " enabled.");
+        getLogger().info("Running on Minecraft " + versionManager.getDetectedVersion());
     }
 
     @Override
@@ -30,5 +33,9 @@ public class XrayAlert extends JavaPlugin {
 
     public OreTracker getOreTracker() {
         return oreTracker;
+    }
+
+    public VersionManager getVersionManager() {
+        return versionManager;
     }
 }

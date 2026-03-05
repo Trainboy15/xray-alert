@@ -10,44 +10,22 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import java.util.EnumSet;
 import java.util.Set;
 
 public class BlockBreakListener implements Listener {
 
-    /** All ore materials present in Minecraft 1.18.2 that this plugin monitors. */
-    private static final Set<Material> ORES = EnumSet.of(
-            Material.COAL_ORE,
-            Material.DEEPSLATE_COAL_ORE,
-            Material.IRON_ORE,
-            Material.DEEPSLATE_IRON_ORE,
-            Material.COPPER_ORE,
-            Material.DEEPSLATE_COPPER_ORE,
-            Material.GOLD_ORE,
-            Material.DEEPSLATE_GOLD_ORE,
-            Material.REDSTONE_ORE,
-            Material.DEEPSLATE_REDSTONE_ORE,
-            Material.EMERALD_ORE,
-            Material.DEEPSLATE_EMERALD_ORE,
-            Material.LAPIS_ORE,
-            Material.DEEPSLATE_LAPIS_ORE,
-            Material.DIAMOND_ORE,
-            Material.DEEPSLATE_DIAMOND_ORE,
-            Material.NETHER_GOLD_ORE,
-            Material.NETHER_QUARTZ_ORE,
-            Material.ANCIENT_DEBRIS
-    );
-
     private final XrayAlert plugin;
+    private final Set<Material> monitoredOres;
 
     public BlockBreakListener(XrayAlert plugin) {
         this.plugin = plugin;
+        this.monitoredOres = plugin.getVersionManager().getMonitoredOres();
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
         Material material = event.getBlock().getType();
-        if (!ORES.contains(material)) {
+        if (!monitoredOres.contains(material)) {
             return;
         }
 
