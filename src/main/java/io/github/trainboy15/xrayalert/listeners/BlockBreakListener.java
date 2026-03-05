@@ -37,7 +37,7 @@ public class BlockBreakListener implements Listener {
         }
 
         OreTracker tracker = plugin.getOreTracker();
-        int count = tracker.recordBreak(player, material);
+        int count = tracker.recordVeinBreak(player, event.getBlock(), material);
 
         if (count < 0) {
             // Ore type is not configured / disabled

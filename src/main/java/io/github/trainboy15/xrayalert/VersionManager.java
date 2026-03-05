@@ -83,16 +83,29 @@ public class VersionManager {
      * Minecraft 1.8 - 1.12: Pre-flattening era
      */
     private Set<Material> getOres_1_8_to_1_12() {
-        return EnumSet.of(
+        Set<Material> ores = EnumSet.of(
                 Material.COAL_ORE,
                 Material.IRON_ORE,
                 Material.GOLD_ORE,
                 Material.DIAMOND_ORE,
                 Material.EMERALD_ORE,
                 Material.LAPIS_ORE,
-                Material.REDSTONE_ORE,
-                Material.NETHER_QUARTZ_ORE
+                Material.REDSTONE_ORE
         );
+
+        // Quartz ore was named QUARTZ_ORE before flattening and NETHER_QUARTZ_ORE after.
+        addIfPresent(ores, "QUARTZ_ORE", "NETHER_QUARTZ_ORE");
+        return ores;
+    }
+
+    private void addIfPresent(Set<Material> target, String... names) {
+        for (String name : names) {
+            Material material = Material.getMaterial(name);
+            if (material != null) {
+                target.add(material);
+                return;
+            }
+        }
     }
 
     /**

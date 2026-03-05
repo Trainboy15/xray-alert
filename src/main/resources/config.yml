@@ -7,6 +7,14 @@ time-window: 60
 # Cooldown in seconds before the same player can trigger another alert for the same ore type.
 alert-cooldown: 30
 
+# Vein detection settings.
+# vein-cache-seconds: how long vein block locations stay cached per player/ore so multiple
+# breaks from the same connected vein are counted once.
+vein-cache-seconds: 300
+
+# Safety cap to limit how many connected blocks are scanned when identifying a vein.
+max-vein-scan-blocks: 128
+
 # Message sent to players with the xrayalerts.alert permission.
 # Placeholders:
 #   {player}    - name of the player who mined the ore
