@@ -1,0 +1,23 @@
+name: XrayAlert
+version: ${project.version}
+main: io.github.trainboy15.xrayalert.XrayAlert
+api-version: 1.18
+description: Alerts staff when players mine too many ores in a short time
+authors: [Trainboy15]
+
+commands:
+  xrayalert:
+    description: XrayAlert command
+    usage: /xrayalert <reload>
+    permission: xrayalerts.admin
+
+permissions:
+  xrayalerts.alert:
+    description: Receive alerts when a player is suspected of xraying
+    default: op
+  xrayalerts.admin:
+    description: Access to XrayAlert admin commands
+    default: op
+  xrayalerts.bypass:
+    description: Bypass xray detection (will not be monitored)
+    default: false
