@@ -1,0 +1,40 @@
+# XrayAlert Configuration
+
+# Time window in seconds within which ore counts are measured.
+# If a player mines at least <threshold> of an ore within this many seconds, an alert is triggered.
+time-window: 60
+
+# Cooldown in seconds before the same player can trigger another alert for the same ore type.
+alert-cooldown: 30
+
+# Message sent to players with the xrayalerts.alert permission.
+# Placeholders:
+#   {player}    - name of the player who mined the ore
+#   {ore}       - ore type (e.g. DIAMOND_ORE)
+#   {count}     - number of that ore mined within the time window
+#   {threshold} - the configured threshold that was reached
+#   {window}    - the configured time window in seconds
+alert-message: "&c[XrayAlert] &f{player} &cmined &f{count}x {ore} &cin &f{window}s &c(threshold: &f{threshold}&c)"
+
+# Thresholds per ore type.
+# Set to -1 to disable monitoring for that ore type.
+thresholds:
+  DIAMOND_ORE: 5
+  DEEPSLATE_DIAMOND_ORE: 5
+  ANCIENT_DEBRIS: 3
+  EMERALD_ORE: 5
+  DEEPSLATE_EMERALD_ORE: 5
+  GOLD_ORE: 10
+  DEEPSLATE_GOLD_ORE: 10
+  IRON_ORE: 20
+  DEEPSLATE_IRON_ORE: 20
+  COAL_ORE: 20
+  DEEPSLATE_COAL_ORE: 20
+  COPPER_ORE: 15
+  DEEPSLATE_COPPER_ORE: 15
+  LAPIS_ORE: 5
+  DEEPSLATE_LAPIS_ORE: 5
+  REDSTONE_ORE: 10
+  DEEPSLATE_REDSTONE_ORE: 10
+  NETHER_GOLD_ORE: 10
+  NETHER_QUARTZ_ORE: 15
